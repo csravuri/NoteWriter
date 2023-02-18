@@ -12,10 +12,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>NoteWriter</ApplicationTitle>
+		<ApplicationTitle>Note Writer</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.notewriter</ApplicationId>
+		<ApplicationId>com.csravuri.notewriter</ApplicationId>
 		<ApplicationIdGuid>546BC531-54F5-4690-832B-AE4F146CB9C0</ApplicationIdGuid>
 
 		<!-- Versions -->
