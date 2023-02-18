@@ -1,8 +1,9 @@
-﻿using System.Text.Json;
+﻿using System.Collections.ObjectModel;
+using System.Text.Json;
 
-namespace DataSource
+namespace NoteWriter
 {
-	public class NotesList : List<Note>
+	public class NotesList : ObservableCollection<Note>
 	{
 		NotesList() : base()
 		{
@@ -25,6 +26,14 @@ namespace DataSource
 			}
 
 			return notesList;
+		}
+
+		private void AddRange(Note[] notes)
+		{
+			foreach (var note in notes)
+			{
+				Add(note);
+			}
 		}
 
 		public void Save()

@@ -2,11 +2,11 @@
 
 public partial class MainPage : ContentPage
 {
-	readonly DataSource.NotesList nodeList;
+	readonly NotesList nodeList;
 	public MainPage()
 	{
 		InitializeComponent();
-		nodeList = DataSource.NotesList.Load();
+		nodeList = NotesList.Load();
 		BindingContext = nodeList;
 	}
 

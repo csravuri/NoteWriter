@@ -9,7 +9,7 @@
         <Entry Placeholder="Description"
                Text="{Binding Description}"/>
         <HorizontalStackLayout>
-            <Button Text="Cancel"/>
+            <Button Text="Cancel" Clicked="CancelButton_Clicked"/>
             <Button Text="Save" Clicked="SaveButton_Clicked"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>

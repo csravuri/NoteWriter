@@ -1,5 +1,3 @@
-using DataSource;
-
 namespace NoteWriter;
 
 public partial class NotePage : ContentPage
@@ -19,12 +17,32 @@ public partial class NotePage : ContentPage
 		InitializeComponent();
 	}
 
-	private void SaveButton_Clicked(object sender, EventArgs e)
+	private async void SaveButton_Clicked(object sender, EventArgs e)
 	{
-		if (!nodeList.Exists(x => x.Id == note.Id))
+		if (!nodeList.Contains(note, new NoteEqualityComparer()))
 		{
 			nodeList.Add(note);
 		}
 		nodeList.Save();
+
+		await Navigation.PopAsync();
+	}
+
+	class NoteEqualityComparer : IEqualityComparer<Note>
+	{
+		bool IEqualityComparer<Note>.Equals(Note x, Note y)
+		{
+			return x.Id == y.Id;
+		}
+
+		int IEqualityComparer<Note>.GetHashCode(Note obj)
+		{
+			return obj.GetHashCode();
+		}
+	}
+
+	private async void CancelButton_Clicked(object sender, EventArgs e)
+	{
+		await Navigation.PopAsync();
 	}
 }

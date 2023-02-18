@@ -1,4 +1,4 @@
-﻿namespace DataSource
+﻿namespace NoteWriter
 {
 	public class Note
 	{
