@@ -4,9 +4,13 @@
              x:Class="NoteWriter.NotePage"
              Title="Notes">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Entry Placeholder="Name"
+               Text="{Binding Name}"/>
+        <Entry Placeholder="Description"
+               Text="{Binding Description}"/>
+        <HorizontalStackLayout>
+            <Button Text="Cancel"/>
+            <Button Text="Save" Clicked="SaveButton_Clicked"/>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
