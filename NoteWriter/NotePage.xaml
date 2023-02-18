@@ -3,10 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NoteWriter.NotePage"
              Title="Notes">
-    <VerticalStackLayout>
+    <VerticalStackLayout Margin="5">
         <Entry Placeholder="Name"
+               ReturnType="Next"
+               Keyboard="Text"
                Text="{Binding Name}"/>
         <Entry Placeholder="Description"
+               ReturnType="Done"
+               Keyboard="Text"
                Text="{Binding Description}"/>
         <HorizontalStackLayout>
             <Button Text="Cancel" Clicked="CancelButton_Clicked"/>
