@@ -10,14 +10,21 @@ public partial class MainPage : ContentPage
 		BindingContext = nodeList;
 	}
 
-	private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+	private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
 	{
+		var listView = sender as ListView;
+		if (listView is null)
+		{
+			return;
+		}
 
+		await Navigation.PushAsync(new NotePage(nodeList, e.Item as Note));
+		listView.SelectedItem = null;
 	}
 
-	private void Button_Clicked(object sender, EventArgs e)
+	private async void Button_Clicked(object sender, EventArgs e)
 	{
-		Navigation.PushAsync(new NotePage(nodeList));
+		await Navigation.PushAsync(new NotePage(nodeList));
 	}
 }
 
