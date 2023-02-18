@@ -12,6 +12,12 @@ namespace DataSource
 		{
 			var notesList = new NotesList();
 			var jsonString = NotesContent.Read();
+
+			if (jsonString is null)
+			{
+				return notesList;
+			}
+
 			var notes = JsonSerializer.Deserialize<Note[]>(jsonString);
 			if (notes != null)
 			{
