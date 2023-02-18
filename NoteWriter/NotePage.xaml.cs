@@ -2,12 +2,12 @@ namespace NoteWriter;
 
 public partial class NotePage : ContentPage
 {
-	readonly NotesList nodeList;
+	readonly NotesList noteList;
 	readonly Note note;
 
 	public NotePage(NotesList nodeList, Note note = null) : this()
 	{
-		this.nodeList = nodeList;
+		this.noteList = nodeList;
 		this.note = note ?? new Note();
 		BindingContext = this.note;
 	}
@@ -19,11 +19,17 @@ public partial class NotePage : ContentPage
 
 	private async void SaveButton_Clicked(object sender, EventArgs e)
 	{
-		if (!nodeList.Contains(note, new NoteEqualityComparer()))
+		if (noteList.Contains(note, new NoteEqualityComparer()))
 		{
-			nodeList.Add(note);
+			int index = noteList.IndexOf(note);
+			noteList.Remove(note);
+			noteList.Insert(index, note);
 		}
-		nodeList.Save();
+		else
+		{
+			noteList.Add(note);
+		}
+		noteList.Save();
 
 		await Navigation.PopAsync();
 	}

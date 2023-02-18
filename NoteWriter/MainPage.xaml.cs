@@ -2,12 +2,12 @@
 
 public partial class MainPage : ContentPage
 {
-	readonly NotesList nodeList;
+	readonly NotesList noteList;
 	public MainPage()
 	{
 		InitializeComponent();
-		nodeList = NotesList.Load();
-		BindingContext = nodeList;
+		noteList = NotesList.Load();
+		BindingContext = noteList;
 	}
 
 	private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -18,13 +18,13 @@ public partial class MainPage : ContentPage
 			return;
 		}
 
-		await Navigation.PushAsync(new NotePage(nodeList, e.Item as Note));
+		await Navigation.PushAsync(new NotePage(noteList, e.Item as Note));
 		listView.SelectedItem = null;
 	}
 
 	private async void Button_Clicked(object sender, EventArgs e)
 	{
-		await Navigation.PushAsync(new NotePage(nodeList));
+		await Navigation.PushAsync(new NotePage(noteList));
 	}
 }
 
