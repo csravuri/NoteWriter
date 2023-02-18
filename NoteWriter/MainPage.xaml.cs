@@ -17,7 +17,7 @@ public partial class MainPage : ContentPage
 
 	private void Button_Clicked(object sender, EventArgs e)
 	{
-
+		Navigation.PushAsync(new NotePage(nodeList));
 	}
 }
 
