@@ -13,7 +13,7 @@ namespace DataSource
 			var notesList = new NotesList();
 			var jsonString = NotesContent.Read();
 
-			if (jsonString is null)
+			if (string.IsNullOrEmpty(jsonString))
 			{
 				return notesList;
 			}
