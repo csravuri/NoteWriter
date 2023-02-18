@@ -51,4 +51,14 @@ public partial class NotePage : ContentPage
 	{
 		await Navigation.PopAsync();
 	}
+
+	private void GalaryButton_Clicked(object sender, EventArgs e)
+	{
+
+	}
+
+	private void CameraButton_Clicked(object sender, EventArgs e)
+	{
+
+	}
 }
