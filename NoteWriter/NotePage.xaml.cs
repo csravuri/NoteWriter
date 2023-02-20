@@ -52,8 +52,15 @@ public partial class NotePage : ContentPage
 		await Navigation.PopAsync();
 	}
 
-	private void GalaryButton_Clicked(object sender, EventArgs e)
+	private async void GalaryButton_Clicked(object sender, EventArgs e)
 	{
+		var fileResult = await MediaPicker.PickPhotoAsync();
+		if (fileResult != null)
+		{
+			var localPath = Path.Combine(FileSystem.Current.AppDataDirectory, fileResult.FileName);
+			File.Copy(fileResult.FullPath, localPath, true);
+			note.ImagePaths.Add(localPath);
+		}
 	}
 
 	private async void CameraButton_Clicked(object sender, EventArgs e)
