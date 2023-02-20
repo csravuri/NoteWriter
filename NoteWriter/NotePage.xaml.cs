@@ -19,6 +19,12 @@ public partial class NotePage : ContentPage
 
 	private async void SaveButton_Clicked(object sender, EventArgs e)
 	{
+		if (string.IsNullOrEmpty(note.Name))
+		{
+			await DisplayAlert("Error", "Enter Name!", "Ok");
+			return;
+		}
+
 		if (noteList.Contains(note, new NoteEqualityComparer()))
 		{
 			int index = noteList.IndexOf(note);
