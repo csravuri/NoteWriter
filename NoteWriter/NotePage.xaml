@@ -23,11 +23,15 @@
                        ReturnType="Done"
                        Keyboard="Text"
                        Text="{Binding Description}"/>
-                <ListView ItemsSource="{Binding ImagePaths}">
+
+                <ListView ItemsSource="{Binding ImagePaths}"
+                          SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Image Source="{Binding .}"/>
+                                <Border Stroke="#000" >
+                                    <Image Source="{Binding .}" Aspect="Fill"/>
+                                </Border>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
