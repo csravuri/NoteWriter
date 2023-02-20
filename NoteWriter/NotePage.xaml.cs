@@ -58,13 +58,25 @@ public partial class NotePage : ContentPage
 
 	private async void CameraButton_Clicked(object sender, EventArgs e)
 	{
-		var fileResult = await MediaPicker.CapturePhotoAsync();
+		var options = new MediaPickerOptions();
+		options.Title = "Take a Photo";
+		var fileResult = await MediaPicker.CapturePhotoAsync(options);
 		if (fileResult != null)
 		{
 			var localPath = Path.Combine(FileSystem.Current.AppDataDirectory, fileResult.FileName);
 			File.Move(fileResult.FullPath, localPath, true);
 			note.ImagePaths.Add(localPath);
 		}
+
+	}
+
+	private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+	{
+
+	}
+
+	private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+	{
 
 	}
 }

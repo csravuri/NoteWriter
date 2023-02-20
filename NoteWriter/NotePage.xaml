@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NoteWriter.NotePage"
              Title="Note">
+
     <StackLayout Margin="5">
         <Grid ColumnSpacing="50">
             <Grid.ColumnDefinitions>
@@ -10,11 +11,17 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Text="Cancel" Clicked="CancelButton_Clicked" Grid.Column="0" HorizontalOptions="Start"/>
-            <Button Text="Save" Clicked="SaveButton_Clicked" Grid.Column="1" HorizontalOptions="End"/>
-        </Grid>
-        <ScrollView>
-            <StackLayout>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Button Text="Cancel" Clicked="CancelButton_Clicked" Grid.Row="0"  Grid.Column="0" HorizontalOptions="Start"/>
+            <Button Text="Save" Clicked="SaveButton_Clicked" Grid.Row="0" Grid.Column="1" HorizontalOptions="End"/>
+
+            <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
                 <Entry Placeholder="Name"
                        ReturnType="Next"
                        Keyboard="Text"
@@ -23,29 +30,32 @@
                        ReturnType="Done"
                        Keyboard="Text"
                        Text="{Binding Description}"/>
-
-                <ListView ItemsSource="{Binding ImagePaths}"
-                          SeparatorVisibility="None">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Border Stroke="#000" >
-                                    <Image Source="{Binding .}" Aspect="Fill"/>
-                                </Border>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Grid ColumnSpacing="50">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Button Text="+ Camera" Clicked="CameraButton_Clicked" Grid.Column="0" HorizontalOptions="Start"/>
-                    <Button Text="+ Galary" Clicked="GalaryButton_Clicked" Grid.Column="1" HorizontalOptions="End"/>
-                </Grid>
             </StackLayout>
-        </ScrollView>
+
+
+            <ListView Grid.Row="2" Grid.ColumnSpan="2"
+                          ItemsSource="{Binding ImagePaths}"
+                          SeparatorVisibility="None"
+                          HasUnevenRows="True"
+                          SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Border Stroke="#000" >
+                                <Grid Margin="5">
+                                    <Image Source="{Binding .}"/>
+                                    <Button Text="X" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Red"/>
+                                </Grid>
+                            </Border>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="+ Camera" Clicked="CameraButton_Clicked" Grid.Row="3" Grid.Column="0" HorizontalOptions="Start"/>
+            <Button Text="+ Galary" Clicked="GalaryButton_Clicked" Grid.Row="3" Grid.Column="1" HorizontalOptions="End"/>
+        </Grid>
+
+
     </StackLayout>
 </ContentPage>
