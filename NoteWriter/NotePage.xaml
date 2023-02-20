@@ -33,7 +33,8 @@
             </StackLayout>
 
 
-            <ListView Grid.Row="2" Grid.ColumnSpan="2"
+            <ListView Grid.Row="2" Grid.ColumnSpan="2" 
+                      HorizontalOptions="Center"
                           ItemsSource="{Binding ImagePaths}"
                           SeparatorVisibility="None"
                           HasUnevenRows="True"

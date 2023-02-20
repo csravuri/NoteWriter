@@ -79,6 +79,7 @@ public partial class NotePage : ContentPage
 			if (!string.IsNullOrEmpty(selectedImage))
 			{
 				note.ImagePaths.Remove(selectedImage);
+				File.Delete(selectedImage);
 			}
 		}
 	}
