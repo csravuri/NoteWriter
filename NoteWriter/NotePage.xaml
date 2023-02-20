@@ -44,7 +44,12 @@
                             <Border Stroke="#000" >
                                 <Grid Margin="5">
                                     <Image Source="{Binding .}"/>
-                                    <Button Text="X" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Red"/>
+                                    <Button Text="X" 
+                                            HorizontalOptions="End" 
+                                            VerticalOptions="Start" 
+                                            BackgroundColor="Red"
+                                            CommandParameter="{Binding .}"
+                                            Clicked="DeleteButton_Clicked"/>
                                 </Grid>
                             </Border>
                         </ViewCell>

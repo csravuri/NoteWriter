@@ -70,13 +70,16 @@ public partial class NotePage : ContentPage
 
 	}
 
-	private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+	private void DeleteButton_Clicked(object sender, EventArgs e)
 	{
-
-	}
-
-	private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-	{
-
+		var deleteButton = sender as Button;
+		if (deleteButton != null)
+		{
+			var selectedImage = deleteButton.CommandParameter as string;
+			if (!string.IsNullOrEmpty(selectedImage))
+			{
+				note.ImagePaths.Remove(selectedImage);
+			}
+		}
 	}
 }
