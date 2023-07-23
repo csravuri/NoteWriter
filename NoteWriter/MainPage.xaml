@@ -14,29 +14,27 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid>
+                        <Grid Padding="0,3">
                             <Frame Padding="3" BorderColor="Black">
-                                <HorizontalStackLayout>
-                                    <VerticalStackLayout Padding="3">
-                                        <HorizontalStackLayout>
-                                            <Label Text="Name: "/>
-                                            <Label Text="{Binding Name}" FontAttributes="Bold"/>
-                                        </HorizontalStackLayout>
-                                        <HorizontalStackLayout>
-                                            <Label Text="Description: "/>
-                                            <Label Text="{Binding Description}" FontAttributes="Bold"/>
-                                        </HorizontalStackLayout>
-                                    </VerticalStackLayout>
-                                    <Button Text="X" 
-                                            Clicked="DeleteButton_Clicked"
-                                            BackgroundColor="#c23838"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="End"
-                                            CommandParameter="{Binding .}"/>
-                                </HorizontalStackLayout>
+                                <VerticalStackLayout Padding="3" HorizontalOptions="FillAndExpand">
+                                    <HorizontalStackLayout>
+                                        <Label Text="Name: "/>
+                                        <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Label Text="Description: "/>
+                                        <Label Text="{Binding Description}" FontAttributes="Bold"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
                             </Frame>
+                            <Button Text="X"
+                                    Margin="5"
+                                    Clicked="DeleteButton_Clicked"
+                                    BackgroundColor="#c23838"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="End"
+                                    CommandParameter="{Binding .}"/>
                         </Grid>
-                        
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
