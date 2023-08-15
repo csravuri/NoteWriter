@@ -2,29 +2,53 @@
 
 public partial class MainPage : ContentPage
 {
-	readonly NotesList noteList;
-	public MainPage()
-	{
-		InitializeComponent();
-		noteList = NotesList.Load();
-		BindingContext = noteList;
-	}
+    readonly NotesList noteList;
+    public MainPage()
+    {
+        InitializeComponent();
+        noteList = NotesList.Load();
+        BindingContext = noteList;
+    }
 
-	private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-	{
-		var listView = sender as ListView;
-		if (listView is null)
-		{
-			return;
-		}
+    private async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        if (sender is ListView listView)
+        {
+            await Navigation.PushAsync(new NotePage(noteList, e.Item as Note));
+            listView.SelectedItem = null;
+        }
+    }
 
-		await Navigation.PushAsync(new NotePage(noteList, e.Item as Note));
-		listView.SelectedItem = null;
-	}
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new NotePage(noteList));
+    }
 
-	private async void Button_Clicked(object sender, EventArgs e)
-	{
-		await Navigation.PushAsync(new NotePage(noteList));
-	}
+    private void DeleteButton_Clicked(object sender, EventArgs e)
+    {
+        if (sender is Button deleteButton && deleteButton.CommandParameter is Note note)
+        {
+            foreach (var image in note.ImagePaths)
+            {
+                if (!string.IsNullOrEmpty(image) && File.Exists(image))
+                {
+                    File.Delete(image);
+                }
+            }
+
+            var notes = noteList.ToArray();
+
+            noteList.Clear();
+            foreach (var item in notes)
+            {
+                if (item.Id != note.Id)
+                {
+                    noteList.Add(item);
+                }
+            }
+
+            noteList.Save();
+        }
+    }
 }
 

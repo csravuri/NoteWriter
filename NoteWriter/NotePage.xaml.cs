@@ -5,9 +5,9 @@ public partial class NotePage : ContentPage
 	readonly NotesList noteList;
 	readonly Note note;
 
-	public NotePage(NotesList nodeList, Note note = null) : this()
+	public NotePage(NotesList noteList, Note note = null) : this()
 	{
-		this.noteList = nodeList;
+		this.noteList = noteList;
 		this.note = note ?? new Note();
 		BindingContext = this.note;
 	}
@@ -71,9 +71,11 @@ public partial class NotePage : ContentPage
 
 	private async void CameraButton_Clicked(object sender, EventArgs e)
 	{
-		var options = new MediaPickerOptions();
-		options.Title = "Take a Photo";
-		var fileResult = await MediaPicker.CapturePhotoAsync(options);
+        var options = new MediaPickerOptions
+        {
+            Title = "Take a Photo"
+        };
+        var fileResult = await MediaPicker.CapturePhotoAsync(options);
 		if (fileResult != null)
 		{
 			var localPath = Path.Combine(FileSystem.Current.AppDataDirectory, fileResult.FileName);
@@ -85,15 +87,14 @@ public partial class NotePage : ContentPage
 
 	private void DeleteButton_Clicked(object sender, EventArgs e)
 	{
-		var deleteButton = sender as Button;
-		if (deleteButton != null)
-		{
-			var selectedImage = deleteButton.CommandParameter as string;
-			if (!string.IsNullOrEmpty(selectedImage))
-			{
-				note.ImagePaths.Remove(selectedImage);
-				File.Delete(selectedImage);
-			}
-		}
-	}
+        if (sender is Button deleteButton)
+        {
+            var selectedImage = deleteButton.CommandParameter as string;
+            if (!string.IsNullOrEmpty(selectedImage))
+            {
+                note.ImagePaths.Remove(selectedImage);
+                File.Delete(selectedImage);
+            }
+        }
+    }
 }

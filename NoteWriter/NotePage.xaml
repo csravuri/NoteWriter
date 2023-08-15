@@ -47,7 +47,7 @@
                                 <Button Text="X" 
                                             HorizontalOptions="End" 
                                             VerticalOptions="Start" 
-                                            BackgroundColor="Red"
+                                            BackgroundColor="#c23838"
                                             CommandParameter="{Binding .}"
                                             Clicked="DeleteButton_Clicked"/>
                             </Grid>
