@@ -85,11 +85,12 @@ public partial class NotePage : ContentPage
 
 	}
 
-	private void DeleteButton_Clicked(object sender, EventArgs e)
+	private async void DeleteButton_Clicked(object sender, EventArgs e)
 	{
 		if (sender is ImageButton deleteButton
 			&& deleteButton.CommandParameter is string selectedImage
-			&& !string.IsNullOrEmpty(selectedImage))
+			&& !string.IsNullOrEmpty(selectedImage)
+			&& await Shell.Current.DisplayAlert("Delete!", "Want to Delete?", "Yes", "No"))
 		{
 			note.ImagePaths.Remove(selectedImage);
 			File.Delete(selectedImage);

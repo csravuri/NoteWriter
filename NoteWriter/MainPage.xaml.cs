@@ -28,7 +28,7 @@ public partial class MainPage : ContentPage
 	{
 		if (sender is Button deleteButton
 			&& deleteButton.CommandParameter is Note note
-			&& await Shell.Current.DisplayAlert("Delete!", "Want to delete?", Yes, No))
+			&& await Shell.Current.DisplayAlert("Delete!", "Want to delete?", "Yes", "No"))
 		{
 			foreach (var image in note.ImagePaths)
 			{
@@ -52,8 +52,5 @@ public partial class MainPage : ContentPage
 			noteList.Save();
 		}
 	}
-
-	const string Yes = "Yes";
-	const string No = "No";
 }
 
