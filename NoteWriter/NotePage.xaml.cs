@@ -4,12 +4,16 @@ public partial class NotePage : ContentPage
 {
 	readonly NotesList noteList;
 	readonly Note note;
+	readonly List<string> deletedImages;
+	readonly List<string> addedImages;
 
 	public NotePage(NotesList noteList, Note note = null) : this()
 	{
 		this.noteList = noteList;
 		this.note = note ?? new Note();
 		BindingContext = this.note;
+		deletedImages = new List<string>();
+		addedImages = new List<string>();
 	}
 
 	public NotePage()
@@ -35,6 +39,7 @@ public partial class NotePage : ContentPage
 		{
 			noteList.Add(note);
 		}
+		DeleteImages(deletedImages);
 		noteList.Save();
 
 		await Navigation.PopAsync();
@@ -66,6 +71,7 @@ public partial class NotePage : ContentPage
 			var localPath = Path.Combine(FileSystem.Current.AppDataDirectory, fileResult.FileName);
 			File.Copy(fileResult.FullPath, localPath, true);
 			note.ImagePaths.Add(localPath);
+			addedImages.Add(localPath);
 		}
 	}
 
@@ -81,6 +87,7 @@ public partial class NotePage : ContentPage
 			var localPath = Path.Combine(FileSystem.Current.AppDataDirectory, fileResult.FileName);
 			File.Move(fileResult.FullPath, localPath, true);
 			note.ImagePaths.Add(localPath);
+			addedImages.Add(localPath);
 		}
 
 	}
@@ -93,7 +100,7 @@ public partial class NotePage : ContentPage
 			&& await Shell.Current.DisplayAlert("Delete!", "Want to Delete?", "Yes", "No"))
 		{
 			note.ImagePaths.Remove(selectedImage);
-			File.Delete(selectedImage);
+			deletedImages.Add(selectedImage);
 		}
 	}
 
@@ -108,6 +115,14 @@ public partial class NotePage : ContentPage
 				Title = "Share Image",
 				File = new ShareFile(selectedImage)
 			});
+		}
+	}
+
+	void DeleteImages(List<string> imagesToDelete)
+	{
+		foreach (var image in imagesToDelete)
+		{
+			File.Delete(image);
 		}
 	}
 }

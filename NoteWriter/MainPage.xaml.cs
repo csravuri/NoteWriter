@@ -2,10 +2,16 @@
 
 public partial class MainPage : ContentPage
 {
-	readonly NotesList noteList;
+	NotesList noteList;
 	public MainPage()
 	{
 		InitializeComponent();
+	}
+
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+
 		noteList = NotesList.Load();
 		BindingContext = noteList;
 	}
