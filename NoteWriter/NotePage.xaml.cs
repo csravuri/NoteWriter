@@ -96,13 +96,17 @@ public partial class NotePage : ContentPage
 		}
 	}
 
-	private void ShareButton_Clicked(object sender, EventArgs e)
+	private async void ShareButton_Clicked(object sender, EventArgs e)
 	{
 		if (sender is ImageButton shareButton
 			&& shareButton.CommandParameter is string selectedImage
 			&& !string.IsNullOrEmpty(selectedImage))
 		{
-
+			await Share.Default.RequestAsync(new ShareFileRequest
+			{
+				Title = "Share Image",
+				File = new ShareFile(selectedImage)
+			});
 		}
 	}
 }
