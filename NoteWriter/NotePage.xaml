@@ -43,13 +43,28 @@
                     <ViewCell>
                         <Border Stroke="#000" >
                             <Grid Margin="5">
-                                <Image Source="{Binding .}"/>
-                                <Button Text="X" 
-                                            HorizontalOptions="End" 
-                                            VerticalOptions="Start" 
-                                            BackgroundColor="#c23838"
-                                            CommandParameter="{Binding .}"
-                                            Clicked="DeleteButton_Clicked"/>
+								<Image Source="{Binding .}"/>
+								<HorizontalStackLayout
+									HorizontalOptions="End" 
+									VerticalOptions="Start" 
+									Spacing="5">
+									<ImageButton 
+										BackgroundColor="#a3ab65"
+										HeightRequest="40"
+										WidthRequest="40"
+										CornerRadius="5"
+										Source="share.png"
+										CommandParameter="{Binding .}"
+										Clicked="ShareButton_Clicked"/>
+									<ImageButton 
+										Source="delete.png"
+										HeightRequest="40"
+										WidthRequest="40"
+										CornerRadius="5"
+                                        BackgroundColor="#c23838"
+                                        CommandParameter="{Binding .}"
+                                        Clicked="DeleteButton_Clicked"/>
+								</HorizontalStackLayout>
                             </Grid>
                         </Border>
                     </ViewCell>
